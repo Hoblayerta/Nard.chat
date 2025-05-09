@@ -20,7 +20,7 @@ A participatory creation protocol that enables collaborative development of stor
 
 - **Frontend:** React with TanStack Query and Tailwind CSS
 - **Backend:** Express.js with in-memory storage
-- **Blockchain:** Integration with Arbitrum Sepolia using ethers.js v6
+- **Blockchain:** Integration with Base Sepolia using ethers.js v6
 - **Wallets:** Support for multiple wallets through WalletConnect
 
 ## Blockchain Integration
@@ -33,31 +33,15 @@ The platform uses various smart contracts on the Base Sepolia network along infr
 - **Address:** [0x23171D30116fd82eC1586e411177E2C5879b1F54](https://base-sepolia.blockscout.com/address/0x23171D30116fd82eC1586e411177E2C5879b1F54?tab=index)
 - **Function:** Contract on Base Sepolia that stores information about stories and comments to create decentralized narratives on the blockchain
 -**I.e:** https://base-sepolia.blockscout.com/tx/0xb41904325bfe18336ee875f9fc7c791435a0e34fe833773f7a1717f2c60bda7a
-#### Emitter Contract (Hyperlane)
-- **Address:** [0x6aF5E39339296E8F22D510E5F9071cD369aE6db3](https://sepolia.arbiscan.io/address/0x6aF5E39339296E8F22D510E5F9071cD369aE6db3)
-- **Function:** Part of the Hyperlane infrastructure that verifies the ownership of NFTs representing attributions to the project
-- **Story Protocol Reference:** [Aeneid IPA 0xDC39364746fE32b0Cc383628c01A2f50a390FB6b](https://aeneid.explorer.story.foundation/ipa/0xDC39364746fE32b0Cc383628c01A2f50a390FB6b)
-
-#### Receiver Contract (Hyperlane)
-- **Address:** [0xa38d18d7Ec91ED8543970040cdC8b7a98a63603B](https://sepolia.arbiscan.io/address/0xa38d18d7Ec91ED8543970040cdC8b7a98a63603B)
-- **Function:** Part of the Hyperlane infrastructure that receives cross-chain confirmation and grants reputation badges such as "superfan" to participants
 
 ## Blockchain Architecture
 
-The system uses Hyperlane infrastructure for cross-chain communication and data storage:
-
 1. **SimpleStorage:** Main contract on Arbitrum Sepolia that stores stories and comments to preserve them in a decentralized manner
-2. **Emitter -> Receiver:** Contracts from the Hyperlane infrastructure that enable cross-chain communication, verify NFT ownership, and grant reputation in the form of badges to project participants
+
 
 ## How to Use the Blockchain Integration
 
-### For Users
-1. Connect your wallet using the "Connect" button in the navigation bar
-2. Navigate to any post to see the "Preserve this content on the blockchain" section
-3. Use the "Save to Blockchain" button to preserve the post and its most important comments
-4. If you own the required NFT in Story Protocol, the "superfan" badge will automatically appear on your profile
-
-### For Administrators
+### For Administrators and Mods
 1. In the admin panel, use the "Write to Contract" button next to "New Post"
 2. Select between showing "Most voted" or "Most recent" comments
 3. Configure the number of comments to include
@@ -68,7 +52,7 @@ The system uses Hyperlane infrastructure for cross-chain communication and data 
 ### Prerequisites
 - Node.js v18 or higher
 - Metamask or another wallet compatible with Arbitrum Sepolia
-- Access to Arbitrum Sepolia RPC
+- Access to Base Sepolia RPC
 
 ### Installation
 
