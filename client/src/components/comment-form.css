@@ -1,0 +1,124 @@
+.comment-form-container {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.comment-form-avatar {
+  height: 40px;
+  width: 40px;
+}
+
+.comment-form-textarea {
+  flex: 1;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+  min-height: 80px;
+  resize: vertical;
+}
+
+.comment-form-button {
+  margin-top: 8px;
+  background-color: var(--primary);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.comment-form-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.comment-form-button:disabled {
+  background-color: var(--primary-disabled);
+  cursor: not-allowed;
+}
+
+/* Estilos para el modo lento */
+.slow-mode-container {
+  background-color: rgba(255, 240, 200, 0.2);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 200, 0, 0.2);
+}
+
+.slow-mode-active {
+  background-color: rgba(255, 230, 180, 0.3);
+  border: 1px solid rgba(255, 180, 0, 0.3);
+}
+
+.slow-mode-countdown {
+  font-weight: 600;
+  color: var(--yellow-600);
+}
+
+.slow-mode-progress {
+  height: 4px !important;
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+.slow-mode-progress-active {
+  background: linear-gradient(90deg, var(--yellow-500), var(--yellow-300)) !important;
+}
+
+/* Estilos para el sistema de menciones */
+.mention-highlight {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-radius: 4px;
+  padding: 0 2px;
+  font-weight: 500;
+}
+
+.mention-suggestions {
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  border-radius: 4px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-height: 200px;
+  overflow-y: auto;
+  width: 250px;
+  position: absolute;
+  z-index: 50;
+}
+
+.mention-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mention-item:hover {
+  background-color: hsl(var(--accent));
+}
+
+@media (max-width: 768px) {
+  .comment-form-container {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .comment-form-avatar {
+    height: 32px;
+    width: 32px;
+  }
+
+  .comment-form-textarea {
+    min-height: 60px;
+  }
+
+  .comment-form-button {
+    margin-top: 4px;
+  }
+}

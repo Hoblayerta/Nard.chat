@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Estilos para scrollbar */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.3);
+  /* slate-400 con opacidad */
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.5);
+  /* slate-400 con más opacidad */
+}
+
+/* Contenedor principal de comentarios */
+.comment-thread-container {
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  /* espacio para scrollbar */
+  scrollbar-width: thin;
+}
+
+.comment-thread-main {
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Contenedor de comentarios anidados */
+.comment-replies-container {
+  overflow-x: visible;
+  width: auto;
+  position: relative;
+}
+
+/* Comentarios anidados */
+.nested-comment {
+  position: relative;
+  padding-left: 0.5rem;
+  /* Reducido de 1.5rem a 0.5rem */
+  min-width: fit-content;
+}
+
+/* Colores para las líneas de anidación siguiendo el estilo de lemmy */
+.nesting-level-0 .nested-comment {
+  border-left: 2px solid #3b82f6;
+}
+
+/* Azul */
+.nesting-level-1 .nested-comment {
+  border-left: 2px solid #06b6d4;
+}
+
+/* Turquesa */
+.nesting-level-2 .nested-comment {
+  border-left: 2px solid #10b981;
+}
+
+/* Verde */
+.nesting-level-3 .nested-comment {
+  border-left: 2px solid #84cc16;
+}
+
+/* Verde limón */
+.nesting-level-4 .nested-comment {
+  border-left: 2px solid #eab308;
+}
+
+/* Amarillo */
+.nesting-level-5 .nested-comment {
+  border-left: 2px solid #f59e0b;
+}
+
+/* Amarillo naranja */
+.nesting-level-6 .nested-comment {
+  border-left: 2px solid #f97316;
+}
+
+/* Naranja */
+.nesting-level-7 .nested-comment {
+  border-left: 2px solid #ef4444;
+}
+
+/* Rojo */
+.nesting-level-8 .nested-comment {
+  border-left: 2px solid #ec4899;
+}
+
+/* Magenta */
+.nesting-level-9 .nested-comment {
+  border-left: 2px solid #d946ef;
+}
+
+/* Violeta */
+.nesting-level-10 .nested-comment {
+  border-left: 2px solid #8b5cf6;
+}
+
+/* Morado */
+.nesting-level-11 .nested-comment {
+  border-left: 2px solid #0ea5e9;
+}
+
+/* Azul cyan */
+.nesting-level-12 .nested-comment {
+  border-left: 2px solid #3b82f6;
+}
+
+/* Azul (repetido) */
+
+/* Estilos para comentarios - mantener tamaño consistente */
+.comment-item {
+  font-size: 1rem;
+  /* Tamaño base consistente para todos los comentarios */
+  margin-bottom: 0.25rem;
+  /* Reducido de 0.05rem a 0.25rem */
+}
+
+/* Efecto de resaltado cuando se navega a un comentario - mejorado */
+.highlight-comment {
+  animation: highlight-pulse 2.5s ease-in-out;
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes highlight-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    background-color: rgba(59, 130, 246, 0);
+  }
+  25% {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2);
+    background-color: rgba(59, 130, 246, 0.15);
+  }
+  75% {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background-color: rgba(59, 130, 246, 0.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    background-color: transparent;
+  }
+}
+
+/* Todos los niveles de anidación tienen el mismo margen */
+.nesting-level-0,
+.nesting-level-1,
+.nesting-level-2,
+.nesting-level-3,
+.nesting-level-4,
+.nesting-level-5,
+.nesting-level-6,
+.nesting-level-7,
+.nesting-level-8,
+.nesting-level-9,
+.nesting-level-10,
+.nesting-level-11,
+.nesting-level-12 {
+  margin-left: 0;
+}
+
+/* Configurar comportamiento de scroll */
+.comment-thread-container {
+  overflow-x: auto !important;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  padding-bottom: 12px;
+  /* espacio para scrollbar */
+  scrollbar-width: thin;
+  /* Para Firefox */
+  scrollbar-color: #ccc transparent;
+  /* Para Firefox */
+}
+
+/* Estilo de la scrollbar para Chrome/Safari/Edge */
+.comment-thread-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.comment-thread-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.comment-thread-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 20px;
+}
+
+/* Ya tenemos un mejor estilo para highlight-comment al inicio del archivo */
+
+/* Efecto de destello (flash) para llamar la atención */
+.comment-flash {
+  animation: flash-effect 3s ease-out;
+}
+
+@keyframes flash-effect {
+  0% { 
+    background-color: rgba(255, 193, 7, 0.4); /* Amarillo más fuerte */
+    box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.5);
+  }
+  20% { 
+    background-color: rgba(255, 193, 7, 0.35);
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.45);
+  }
+  40% { 
+    background-color: rgba(255, 193, 7, 0.25);
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.35);
+  }
+  60% { 
+    background-color: rgba(255, 193, 7, 0.15);
+    box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.25);
+  }
+  80% { 
+    background-color: rgba(59, 130, 246, 0.1); /* Transición al azul */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+  }
+  100% { 
+    background-color: rgba(59, 130, 246, 0.06); /* Finalizar en azul suave */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+}
+
+.comment-thread-main {
+  width: fit-content;
+  min-width: 100%;
+}
+
+/* Asegurar que los contenedores de comentarios anidados permitan desplazamiento */
+.comment-replies-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: visible;
+}
+
+/* Hacer que las líneas de colores sean más visibles */
+.nested-comment {
+  border-width: 2px !important;
+  /* Línea más fina para mayor visibilidad */
+  padding-left: 0.5rem;
+  /* Padding reducido aún más */
+  margin-top: 0.25rem;
+  /* Espacio superior reducido */
+}
+
+/* Mejoras para el desplazamiento horizontal */
+@media (max-width: 768px) {
+  .comment-thread-container {
+    -webkit-overflow-scrolling: touch;
+    /* Desplazamiento suave en dispositivos táctiles */
+  }
+}
+
+/* Añadir indicación visual de desplazamiento */
+.comment-thread-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to right, transparent, rgba(var(--background), 0.8));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.comment-thread-container:hover::after {
+  opacity: 1;
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media (max-width: 768px) {
+
+  /* Estilo para comentarios anidados en móvil */
+  .mobile-nested-comment {
+    padding-left: 0.5rem;
+    /* Reducido de 0.75rem a 0.5rem */
+    position: relative;
+    border-left-width: 2px !important;
+    /* Línea más fina */
+  }
+
+  /* Añadir espacio adicional para móviles */
+  .comment-thread-container {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* Permitir que los comentarios tengan más espacio en pantallas pequeñas */
+  .comment-thread-main {
+    padding-right: 0.5rem;
+  }
+
+  /* Reducir el espaciado entre elementos en móvil */
+  .comment-item {
+    margin-bottom: 0.25rem;
+  }
+
+  /* Mejorar visualización de los hilos de comentarios */
+  .nested-comment {
+    position: relative;
+    margin-left: 0.125rem !important;
+    /* Reducido de 0.25rem a 0.125rem */
+  }
+}
