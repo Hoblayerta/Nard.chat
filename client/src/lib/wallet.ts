@@ -14,7 +14,7 @@ const Base_SEPOLIA_CONFIG = {
 };
 
 // Dirección del contrato y ABI
-export const CONTRACT_ADDRESS = '0xe074123df0616FdB1fD0E5Eb3efefe43D59b218a';
+export const CONTRACT_ADDRESS = '0x23171D30116fd82eC1586e411177E2C5879b1F54';
 export const CONTRACT_ABI = [
   {
     inputs: [
@@ -179,7 +179,7 @@ export const saveToBlockchain = async (data: string) => {
     const tx = await contract.methods.set(data).send({ from: accounts[0] });
     
     console.log('Transacción confirmada:', tx.transactionHash);
-    console.log(`Ver en Arscan: https://base-sepolia.blockscout.com/tx/${tx.transactionHash}`);
+    console.log(`Ver en Basescan: https://base-sepolia.blockscout.com/tx/${tx.transactionHash}`);
     
     return tx.transactionHash;
   } catch (error: any) {

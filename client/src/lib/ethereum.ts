@@ -60,7 +60,7 @@ const contractABI = [
 ];
 
 // Dirección del contrato en Base Sepolia
-const contractAddress = '0xe074123df0616FdB1fD0E5Eb3efefe43D59b218a';
+const contractAddress = '0x23171D30116fd82eC1586e411177E2C5879b1F54';
 
 /**
  * Verificar si MetaMask está disponible
