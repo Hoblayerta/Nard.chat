@@ -25,7 +25,7 @@ A participatory creation protocol that enables collaborative development of stor
 
 ## Blockchain Integration
 
-The platform uses various smart contracts on the Base Sepolia network along infrastructure to enable participatory creation and decentralized storage of stories:
+The platform uses smart contract on the Base Sepolia network along infrastructure to enable participatory creation and decentralized storage of stories:
 
 ### Smart Contracts
 
@@ -36,7 +36,7 @@ The platform uses various smart contracts on the Base Sepolia network along infr
 
 ## Blockchain Architecture
 
-1. **SimpleStorage:** Main contract on Arbitrum Sepolia that stores stories and comments to preserve them in a decentralized manner
+1. **SimpleStorage:** Main contract on Base Sepolia that stores stories and comments to preserve them in a decentralized manner
 
 
 ## How to Use the Blockchain Integration
@@ -51,7 +51,7 @@ The platform uses various smart contracts on the Base Sepolia network along infr
 
 ### Prerequisites
 - Node.js v18 or higher
-- Metamask or another wallet compatible with Arbitrum Sepolia
+- Metamask or another wallet compatible with Base Sepolia
 - Access to Base Sepolia RPC
 
 ### Installation
