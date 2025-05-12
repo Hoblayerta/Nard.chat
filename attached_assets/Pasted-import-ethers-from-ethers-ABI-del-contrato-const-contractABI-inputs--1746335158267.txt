@@ -30,7 +30,7 @@ const contractABI = [
   }
 ];
 
-// Dirección del contrato en Arbitrum Sepolia
+// Dirección del contrato en Base Sepolia
 const contractAddress = '0xe074123df0616FdB1fD0E5Eb3efefe43D59b218a';
 
 /**
@@ -49,11 +49,11 @@ export async function setValueInContract(value: string): Promise<any> {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     const userAddress = accounts[0];
     
-    // Verifica que estamos en la red correcta (Arbitrum Sepolia)
+    // Verifica que estamos en la red correcta (Base Sepolia)
     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-    // Chain ID de Arbitrum Sepolia es 0x66eee (421614 en decimal)
-    if (chainId !== '0x66eee') {
-      throw new Error('Por favor conecta a la red Arbitrum Sepolia');
+    // Chain ID de Base Sepolia es 0x14a34 (84532 en decimal)
+    if (chainId !== '0x14a34') {
+      throw new Error('Por favor conecta a la red Base Sepolia');
     }
     
     // Crea un proveedor con window.ethereum

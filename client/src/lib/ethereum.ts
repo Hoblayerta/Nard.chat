@@ -59,7 +59,7 @@ const contractABI = [
   }
 ];
 
-// Dirección del contrato en Arbitrum Sepolia
+// Dirección del contrato en Base Sepolia
 const contractAddress = '0xe074123df0616FdB1fD0E5Eb3efefe43D59b218a';
 
 /**
@@ -77,24 +77,24 @@ export function getChainIdHex(chainId: number): string {
 }
 
 /**
- * Configuración de la red Arbitrum Sepolia
+ * Configuración de la red Base Sepolia
  */
-const ARBITRUM_SEPOLIA_CONFIG = {
-  chainId: '0x66eee', // 421614 en hexadecimal
-  chainName: 'Arbitrum Sepolia',
+const Base_SEPOLIA_CONFIG = {
+  chainId: '0x14a34', // 84532 en hexadecimal
+  chainName: 'Base Sepolia',
   nativeCurrency: {
     name: 'ETH',
     symbol: 'ETH',
     decimals: 18
   },
-  rpcUrls: ['https://api.zan.top/arb-sepolia', 'https://sepolia-rollup.arbitrum.io/rpc'],
-  blockExplorerUrls: ['https://sepolia.arbiscan.io/']
+  rpcUrls: ['https://rpc.therpc.io/base-sepolia', 'https://sepolia.base.org'],
+  blockExplorerUrls: ['https://base-sepolia.blockscout.com/']
 };
 
 /**
- * Cambiar a la red Arbitrum Sepolia
+ * Cambiar a la red Base Sepolia
  */
-export async function switchToArbitrumSepolia(): Promise<boolean> {
+export async function switchToBaseSepolia(): Promise<boolean> {
   if (!isMetaMaskAvailable()) {
     throw new Error('MetaMask no está instalado');
   }
@@ -103,7 +103,7 @@ export async function switchToArbitrumSepolia(): Promise<boolean> {
     // Primero intentamos cambiar a la red si ya está agregada
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: ARBITRUM_SEPOLIA_CONFIG.chainId }]
+      params: [{ chainId: Base_SEPOLIA_CONFIG.chainId }]
     });
     return true;
   } catch (error: any) {
@@ -112,15 +112,15 @@ export async function switchToArbitrumSepolia(): Promise<boolean> {
       try {
         await window.ethereum.request({
           method: 'wallet_addEthereumChain',
-          params: [ARBITRUM_SEPOLIA_CONFIG]
+          params: [Base_SEPOLIA_CONFIG]
         });
         return true;
       } catch (addError) {
-        console.error('Error al agregar la red Arbitrum Sepolia:', addError);
+        console.error('Error al agregar la red Base Sepolia:', addError);
         throw addError;
       }
     } else {
-      console.error('Error al cambiar a la red Arbitrum Sepolia:', error);
+      console.error('Error al cambiar a la red Base Sepolia:', error);
       throw error;
     }
   }
@@ -159,12 +159,12 @@ export async function setValueInContract(value: string): Promise<any> {
     const accounts = await requestAccounts();
     const userAddress = accounts[0];
     
-    // Verifica que estamos en la red correcta (Arbitrum Sepolia)
+    // Verifica que estamos en la red correcta (Base Sepolia)
     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-    // Chain ID de Arbitrum Sepolia es 0x66eee (421614 en decimal)
-    if (chainId !== ARBITRUM_SEPOLIA_CONFIG.chainId) {
-      // Intentar cambiar a Arbitrum Sepolia
-      await switchToArbitrumSepolia();
+    // Chain ID de Base Sepolia es 0x14a34 (84532 en decimal)
+    if (chainId !== Base_SEPOLIA_CONFIG.chainId) {
+      // Intentar cambiar a Base Sepolia
+      await switchToBaseSepolia();
     }
     
     // Crea un proveedor con window.ethereum

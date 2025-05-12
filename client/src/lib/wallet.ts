@@ -1,16 +1,16 @@
 import Web3 from 'web3';
 
-// Configuración de la red Arbitrum Sepolia
-const ARBITRUM_SEPOLIA_CONFIG = {
-  chainId: '0x66eee', // 421614 en hexadecimal
-  chainName: 'Arbitrum Sepolia',
+// Configuración de la red Base Sepolia
+const Base_SEPOLIA_CONFIG = {
+  chainId: '0x14a34', // 84532 en hexadecimal
+  chainName: 'Base Sepolia',
   nativeCurrency: {
     name: 'ETH',
     symbol: 'ETH',
     decimals: 18
   },
-  rpcUrls: ['https://api.zan.top/arb-sepolia', 'https://sepolia-rollup.arbitrum.io/rpc'],
-  blockExplorerUrls: ['https://sepolia.arbiscan.io/']
+  rpcUrls: ['https://rpc.therpc.io/base-sepolia', 'https://sepolia.base.org'],
+  blockExplorerUrls: ['https://base-sepolia.blockscout.com/']
 };
 
 // Dirección del contrato y ABI
@@ -76,8 +76,8 @@ export const connectWallet = async () => {
     const accounts = await provider.request({ method: 'eth_requestAccounts' });
     const address = accounts[0];
 
-    // Cambiar a Arbitrum Sepolia si es necesario
-    await switchToArbitrumSepolia();
+    // Cambiar a Base Sepolia si es necesario
+    await switchToBaseSepolia();
 
     return { address, web3 };
   } catch (error) {
@@ -108,25 +108,25 @@ export const checkConnection = async () => {
   }
 };
 
-// Función para cambiar a la red Arbitrum Sepolia
-export const switchToArbitrumSepolia = async () => {
+// Función para cambiar a la red Base Sepolia
+export const switchToBaseSepolia = async () => {
   if (!web3 || !provider) return false;
 
   try {
     // Verificar si estamos en la red correcta
     const chainId = await web3.eth.getChainId();
-    const targetChainId = parseInt('0x66eee', 16); // 421614
+    const targetChainId = parseInt('0x14a34', 16); // 84532
     
     if (Number(chainId) === targetChainId) {
-      console.log('Ya estamos en Arbitrum Sepolia');
+      console.log('Ya estamos en Base Sepolia');
       return true;
     }
 
-    // Intentar cambiar a Arbitrum Sepolia
+    // Intentar cambiar a Base Sepolia
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x66eee' }] // chainId de Arbitrum Sepolia
+        params: [{ chainId: '0x14a34' }] // chainId de Base Sepolia
       });
       return true;
     } catch (switchError: any) {
@@ -134,14 +134,14 @@ export const switchToArbitrumSepolia = async () => {
       if (switchError.code === 4902) {
         await provider.request({
           method: 'wallet_addEthereumChain',
-          params: [ARBITRUM_SEPOLIA_CONFIG],
+          params: [Base_SEPOLIA_CONFIG],
         });
         return true;
       }
       throw switchError;
     }
   } catch (error) {
-    console.error('Error al cambiar a Arbitrum Sepolia:', error);
+    console.error('Error al cambiar a Base Sepolia:', error);
     throw error;
   }
 };
@@ -160,8 +160,8 @@ export const saveToBlockchain = async (data: string) => {
     throw new Error('No hay conexión a la blockchain. Conecta tu wallet primero.');
   }
 
-  // Verificar que estamos en Arbitrum Sepolia
-  await switchToArbitrumSepolia();
+  // Verificar que estamos en Base Sepolia
+  await switchToBaseSepolia();
 
   // Crear una instancia del contrato
   const contract = new web3.eth.Contract(CONTRACT_ABI as any, CONTRACT_ADDRESS);
@@ -172,14 +172,14 @@ export const saveToBlockchain = async (data: string) => {
   }
 
   try {
-    console.log('Enviando transacción a Arbitrum Sepolia...');
+    console.log('Enviando transacción a Base Sepolia...');
     const accounts = await web3.eth.getAccounts();
     
     // Llamar a la función set del contrato
     const tx = await contract.methods.set(data).send({ from: accounts[0] });
     
     console.log('Transacción confirmada:', tx.transactionHash);
-    console.log(`Ver en Arbiscan: https://sepolia.arbiscan.io/tx/${tx.transactionHash}`);
+    console.log(`Ver en Arscan: https://base-sepolia.blockscout.com/tx/${tx.transactionHash}`);
     
     return tx.transactionHash;
   } catch (error: any) {
@@ -189,7 +189,7 @@ export const saveToBlockchain = async (data: string) => {
     if (error.code === 4001) {
       throw new Error('Transacción rechazada por el usuario');
     } else if (error.message.includes('insufficient funds')) {
-      throw new Error('Fondos insuficientes para completar la transacción. Necesitas ETH en Arbitrum Sepolia.');
+      throw new Error('Fondos insuficientes para completar la transacción. Necesitas ETH en Base Sepolia.');
     }
     
     throw error;

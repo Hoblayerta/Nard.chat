@@ -148,7 +148,7 @@ export function WriteContractButton({
           <DialogHeader>
             <DialogTitle>Escribir en Contrato de Blockchain</DialogTitle>
             <DialogDescription>
-              Escribe texto para guardar permanentemente en la blockchain de Arbitrum Sepolia.
+              Escribe texto para guardar permanentemente en la blockchain de Base Sepolia.
             </DialogDescription>
           </DialogHeader>
 
