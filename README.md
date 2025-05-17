@@ -77,6 +77,15 @@ npm run dev
 ### Default Admin Access
 - Username: `admin`
 - Password: `admin123`
+  
+## Usefull links
+https://nard-chat.onrender.com/
+User: LaBlocka
+Password: LilFOMO
+https://ohara.ai/apps/miniapp_cmamz1rti00840opcf8r07yah
+https://nardchat-empowering-crea-4yeu2pd.gamma.site/
+https://lablocka.lol/
+
 
 ## License
 
